@@ -1,0 +1,11 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "CTdYB4jqX6uovW7O",
+    "JWT_KEY": "secret",
+    "GOOGLE_CLIENT_ID": "3637937257-qb1iec4mrad34etmnc1vvfjoufssdn0l.apps.googleusercontent.com",
+    "CLIENT_URL": "http://localhost:3006",
+    "MONGO_URI": "mongodb+srv://khadka:dango@restman-trwwq.mongodb.net/notelu?retryWrites=true&w=majority",
+    "JWT_KEY": "secret",
+    "PORT": "5000"
+  }
+}

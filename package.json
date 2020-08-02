@@ -1,0 +1,31 @@
+{
+  "name": "lab8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "Sajit Khadka",
+  "license": "ISC",
+  "dependencies": {
+    "axios-mock-adapter": "^1.18.2",
+    "bcrypt": "^5.0.0",
+    "config": "^3.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "google-auth-library": "^6.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.21",
+    "node-fetch": "^2.6.0",
+    "react-google-login": "^5.1.21",
+    "uuid": "^8.2.0"
+  }
+}
