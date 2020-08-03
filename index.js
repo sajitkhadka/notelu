@@ -4,7 +4,6 @@ const subscriberRoute = require("./routes/api/subscriberRoute");
 const scheduleRoute = require("./routes/api/scheduleRoute");
 const events = require("./routes/api/events");
 const connectDB = require("./config/connectDB");
-const profileRoute = require("./routes/api/profileRoute");
 var cors = require("cors");
 
 /*added by nelle*/
@@ -22,7 +21,6 @@ app.use("/api/users", userRoute);
 app.use("/api/subscribers", subscriberRoute);
 app.use("/api/schedule", scheduleRoute);
 app.use("/api/apps/calendar", events);
-app.use("/api/profile", profileRoute);
 
 //subscribers route
 

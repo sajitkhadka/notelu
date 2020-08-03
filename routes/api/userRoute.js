@@ -107,6 +107,38 @@ router.post("/register", (req, res, next) => {
     });
 });
 
+/*added by nelle profile update*/
+router.post('/update',checkAuth, (req,res)=>{
+       
+  User.findOne( { email:req.body.email} ).exec((err,user)=>{
+      if(err || !user){
+          return res.status(400).json({
+              error:'User not found'
+          });
+      }
+
+      let {name,email,dob,password} = user; 
+      
+      if(req.body.name) name = req.body.name;
+      if(req.body.dob) dob = req.body.dob;
+      if(req.body.password) password = req.body.password;
+      let phone;
+      if(req.body.phone) phone = req.body.phone;
+
+      User.findOneAndUpdate(
+          {email:req.body.email},
+          {name,email,dob,password,phone},
+          {new: true}
+      ).exec((err,user)=>{
+          if(err){
+              console.log(err)
+          }
+          res.json({user})
+      })
+  })
+})
+/*end of new profile*/
+
 router.get("/auth", checkAuth, (req, res) => {
   res.status(200).json({
     isAuthenticated: true,
@@ -179,7 +211,7 @@ router.post("/google-login", (req, res) => {
     });
 });
 
-/*nothing follows for google login by nelle*/
+/*nothing follows for google login*/
 
 router.get("/posts", checkAuth, (req, res) => {
   res.json(posts.filter((post) => post.username === req.userData.email));
