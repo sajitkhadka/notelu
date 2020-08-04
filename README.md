@@ -29,22 +29,15 @@ Endpoints:
     
  3. Adding Subscribers:
  
-        http://note-lu.herokuapp.com/api/subscribers/add
+        http://note-lu.herokuapp.com/api/subscribers
         method: post
         body:{
-          email:"example@example.com"
+          "email:"example@example.com"
         }
     
-    
- 4. Deleting subscribers:
- 
-        http://note-lu.herokuapp.com/api/subscribers/add
-        method: delete
-        body:{
-          email:"example@example.com"
-        }
+   
 
-5. Add Schedule
+4. Add Schedule
 
         https://note-lu.herokuapp.com/api/schedule/add
         method: post
@@ -60,7 +53,7 @@ Endpoints:
               "selectable": true
         }
 
-6. Get All schedules
+5. Get All schedules
    
        https://note-lu.herokuapp.com/api/schedule/
        method: get
@@ -68,7 +61,7 @@ Endpoints:
             Authorization: "jwt-token-that-you-get-from-login-in
         }
         
- 7. Delete Schedule
+6. Delete Schedule
  
          https://note-lu.herokuapp.com/api/schedule/
          method: delete
@@ -79,15 +72,16 @@ Endpoints:
           "id": "5f2993fb0e31c600172c588f"  //This is id of the schedule you want to delete
         }
         
-  8. Update Schedule
+        
+ 7. Update Schedule
     
-    https://note-lu.herokuapp.com/api/schedule/
-    method:put
-    header:{
+        https://note-lu.herokuapp.com/api/schedule/
+        method:put
+        header:{
                     Authorization: "jwt-token-that-you-get-from-login-in
          }
-    body:
-      {
+        body:
+        {
             "id": "5f2716d905b7a15170d270d2",
             "title": "Android Assignment",
             "start": "2020-08-04T22:00:00.000Z",
@@ -95,7 +89,7 @@ Endpoints:
             "label": "college",
             "allDay": false,
             "selectable": true
-      }
+        }
      
      
  # Prekshya Aryal
