@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 /*Nelle notes: note _id was removed for google login, as having this will create an issue*/
 
@@ -13,6 +13,11 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   dob: { type: Date, required: false },
   name: { type: String, required: true },
+  resetLink: {
+    data: String,
+    default: "",
+  },
+  phone: { type: String, required: false },
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);
