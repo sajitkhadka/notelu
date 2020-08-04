@@ -99,17 +99,46 @@ Endpoints:
      
      
  # Prekshya Aryal
-  1. Signup after email verification
-  
+  1. Signup after email verification(Partly done by Sajit)
+       
+       
+                https://note-lu.herokuapp.com/api/users/register
+                method: post
+                body:{
+                  "name":"Prekshya Aryal",
+                "dob":"1992-05-20",
+                "email":"n01323774@humbermail.ca",
+                "password":"nepal"
+                }
+                After this a verfication email would be sent. after clicking the link it will send the request to server with the url as:
+                http://note-lu.herokuapp.com/api/users/authentication/jwt-token-encrypted (this process is authomatic as browser will send the get request from url after clicking.)
+                Then the user will be registered.
+
+                Please check your spam for verification link.
     
   2. Reset Password by sending email link
+       
+    http://note-lu.herokuapp.com/api/users/forgotpassword
+    method: post
+    body:
+    {
+    "email":"n01323774@humbermail.ca"
+    }
+    After the this a link to reset password would be sent to your email. Please check your spam as well. after that it would redirect to a web page which will do a post method to submit the new password but in our case, we have to use postman to post the link you get.
+        
   
-  3. 
+  3. Reset Password after you get the link from email.
+  
+         Sample url that you get from email.  
+         http://note-lu.herokuapp.com/api/users/forgotpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjk5ODRkMGUzMWM2MDAxNzJjNTg5MCIsImlhdCI6MTU5NjU2MTYxNywiZXhwIjoxNTk2NTYyODE3fQ.x3LQlLAWzz3Hmtn5SDhvHhAAKzr8FWY5IKidxxZQMV8
+         method: post
+         body:
+         {
+            "newPassword":"nepal2"
+         }
   
   
   
-Since I(Sajit Khadka) copied the code from main repo(where we are doing full project), I have pushed the part that has been previously done by all members.
-
 # Task Division for Server phase only
 
 # Sajit Khadka
@@ -125,8 +154,8 @@ Since I(Sajit Khadka) copied the code from main repo(where we are doing full pro
   
   
 # Prekshya
- 1. Forgot password (sending password resent link and verify from email) and change password
- 3. Adding validation to all part as required
+ 1. Signup after email verification. 
+ 2. Resetting password through email verification.
 
 
 
