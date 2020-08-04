@@ -17,6 +17,7 @@ const userSchema = mongoose.Schema({
     data: String,
     default: "",
   },
+  phone: { type: String, required: false },
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -4,7 +4,8 @@ const _ = require("lodash");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+var http = require("http");
+var url = require("url");
 const router = express.Router();
 
 const checkAuth = require("../../middleware/check-auth");
@@ -69,6 +70,7 @@ router.post("/login", (req, res, next) => {
 //Checks the email is registered or not
 //if not then ends a verification email with a link
 router.post("/register", (req, res, next) => {
+  var hostname = req.headers.host;
   const { name, dob, email, password } = req.body;
   User.find({ email }).exec((err, user) => {
     if (user.length >= 1) {
@@ -98,7 +100,7 @@ router.post("/register", (req, res, next) => {
               },
             ],
             Subject: "Account Activation Link.",
-            HTMLPart: `<h3> Please click on given link to activate your account<a href="http://localhost:3006/api/users/authentication/${token}">Click Here</a></h3>`,
+            HTMLPart: `<h3> Please click on given link to activate your account<a href="http://${hostname}/api/users/authentication/${token}">Click Here</a></h3>`,
             CustomID: "AppGettingStartedTest",
           },
         ],
@@ -196,7 +198,7 @@ router.post("/forgotpassword", (req, res) => {
               },
             ],
             Subject: "Password Reset Link.",
-            HTMLPart: `<h3> Please click on given link to reset your password <a href="http://localhost:3006/api/users/forgotpassword/${token}">Click Here</a></h3>`,
+            HTMLPart: `<h3> Please click on given link to reset your password <a href="http://${req.headers.host}/api/users/forgotpassword/${token}">Click Here</a></h3>`,
             CustomID: "AppGettingStartedTest",
           },
         ],
@@ -265,34 +267,42 @@ router.post("/forgotpassword/:token", (req, res) => {
             error: err,
           });
         });
-      // User.find({ _id: id }).exec((err, user) => {
-      //   if (err || !user) {
-      //     return res
-      //       .status(400)
-      //       .json({ error: "User with this token does not exist!" });
-      //   }
-      //   // const obj = {
-      //   //   password: newPassword,
-      //   // };
-      //   // user = _.extend(user, obj);
-      //   console.log(user);
-
-      //   user.password = newPassword;
-      //   // user.save((err, result) => {
-      //   //   if (error) {
-      //   //     return res.status(400).json({ error: "Reset password error!" });
-      //   //   } else {
-      //   //     return res
-      //   //       .status(200)
-      //   //       .json({ message: "Your password has been changed" });
-      //   //   }
-      //   // });
-      // });
     });
   } else {
     return res.status(409).json({ error: "Authentication error! " });
   }
 });
+
+/*added by nelle profile update*/
+router.post("/update", checkAuth, (req, res) => {
+  User.findOne({ email: req.body.email }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User not found",
+      });
+    }
+
+    let { name, email, dob, password } = user;
+
+    if (req.body.name) name = req.body.name;
+    if (req.body.dob) dob = req.body.dob;
+    if (req.body.password) password = req.body.password;
+    let phone;
+    if (req.body.phone) phone = req.body.phone;
+
+    User.findOneAndUpdate(
+      { email: req.body.email },
+      { name, email, dob, password, phone },
+      { new: true }
+    ).exec((err, user) => {
+      if (err) {
+        console.log(err);
+      }
+      res.json({ user });
+    });
+  });
+});
+/*end of new profile*/
 
 router.get("/auth", checkAuth, (req, res) => {
   res.status(200).json({
