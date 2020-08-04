@@ -108,7 +108,7 @@ Endpoints:
                 http://note-lu.herokuapp.com/api/users/authentication/jwt-token-encrypted (this process is authomatic as browser will send the get request from url after clicking.)
                 Then the user will be registered.
 
-                Please check your spam for verification link.
+                Please check your spam/social as well for verification link.
     
   2. Reset Password by sending email link
        
@@ -118,7 +118,7 @@ Endpoints:
     {
     "email":"n01323774@humbermail.ca"
     }
-    After the this a link to reset password would be sent to your email. Please check your spam as well. after that it would redirect to a web page which will do a post method to submit the new password but in our case, we have to use postman to post the link you get.
+    After this a link to reset password would be sent to your email. Please check your spam or social as well. after that it would redirect to a web page which will do a post method to submit the new password but in our case, we have to use postman to post the link you get.
         
   
   3. Reset Password after you get the link from email.
@@ -132,7 +132,28 @@ Endpoints:
          }
   
   
-  
+  # Marinelle
+  1. Update Profile
+          
+                http://note-lu.herokuapp.com/api/users/update
+                method: POST
+                {
+                "name":"Marinelle Reys",
+                "dob":"2005-02-3",
+                "email":"nellebreyes@gmail.ca",
+                "password":"1234567",
+                "phone":"4372197807"
+                }
+      
+      
+   2. Google Login
+   
+                http://note-lu.herokuapp.com/api/users/google-login
+                method: post
+                {
+                idToken: "Token-you-get-from-google-login"
+                }
+
 # Task Division for Server phase only
 
 # Sajit Khadka
