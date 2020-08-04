@@ -6,6 +6,7 @@ const events = require("./routes/api/events");
 const connectDB = require("./config/connectDB");
 const profileRoute = require("./routes/api/profileRoute");
 var cors = require("cors");
+const router = require("./routes/api/userRoute");
 
 /*added by nelle*/
 require("dotenv").config();
@@ -16,7 +17,8 @@ app.use(express.json());
 
 //connect to db
 connectDB();
-const port = process.env.PORT;
+//const port = process.env.PORT;
+const port = 3006;
 //userroute
 app.use("/api/users", userRoute);
 app.use("/api/subscribers", subscriberRoute);
