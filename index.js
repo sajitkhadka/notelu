@@ -24,6 +24,14 @@ app.use("/api/subscribers", subscriberRoute);
 app.use("/api/schedule", scheduleRoute);
 app.use("/api/apps/calendar", events);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 //subscribers route
 
 app.listen(port, () => {
