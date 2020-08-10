@@ -1,10 +1,11 @@
-# Deployed at https://note-lu.herokuapp.com/
+#  Client 
+# Deployed at https://note-mi.herokuapp.com/
 
-Endpoints:
+Major Endpoints:
 # Sajit Khadka
 1. Login:
 
-        https://note-lu.herokuapp.com/api/users/login
+        https://note-mi.herokuapp.com/api/users/login
         method: post
         body: {
           "email":"sajitkhadka@gmail.com",
@@ -13,7 +14,7 @@ Endpoints:
 
 2. Signup: (Signp is done by Sajit which is modified by Prekshya to send email verification)
 
-        https://note-lu.herokuapp.com/api/users/register
+        https://note-mi.herokuapp.com/api/users/register
         method: post
         body:{
           "name":"Sajit Khadka",
@@ -29,7 +30,7 @@ Endpoints:
     
  3. Adding Subscribers:
  
-        http://note-lu.herokuapp.com/api/subscribers
+        http://note-mi.herokuapp.com/api/subscribers
         method: post
         body:{
           "email:"example@example.com"
@@ -39,7 +40,7 @@ Endpoints:
 
 4. Add Schedule
 
-        https://note-lu.herokuapp.com/api/schedule/add
+        https://note-mi.herokuapp.com/api/schedule/add
         method: post
         header:{
           Authorization: "jwt-token-that-you-get-from-login-in
@@ -55,7 +56,7 @@ Endpoints:
 
 5. Get All schedules
    
-       https://note-lu.herokuapp.com/api/schedule/
+       https://note-mi.herokuapp.com/api/schedule/
        method: get
        header:{
             Authorization: "jwt-token-that-you-get-from-login-in
@@ -63,7 +64,7 @@ Endpoints:
         
 6. Delete Schedule
  
-         https://note-lu.herokuapp.com/api/schedule/
+         https://note-mi.herokuapp.com/api/schedule/
          method: delete
          header:{
                     Authorization: "jwt-token-that-you-get-from-login-in
@@ -75,7 +76,7 @@ Endpoints:
         
  7. Update Schedule
     
-        https://note-lu.herokuapp.com/api/schedule/
+        https://note-mi.herokuapp.com/api/schedule/
         method:put
         header:{
                     Authorization: "jwt-token-that-you-get-from-login-in
@@ -96,7 +97,7 @@ Endpoints:
   1. Signup after email verification(Partly done by Sajit)
        
        
-                https://note-lu.herokuapp.com/api/users/register
+                https://note-mi.herokuapp.com/api/users/register
                 method: post
                 body:{
                   "name":"Prekshya Aryal",
@@ -112,7 +113,7 @@ Endpoints:
     
   2. Reset Password by sending email link
        
-    http://note-lu.herokuapp.com/api/users/forgotpassword
+    http://note-mi.herokuapp.com/api/users/forgotpassword
     method: post
     body:
     {
@@ -124,7 +125,7 @@ Endpoints:
   3. Reset Password after you get the link from email.
   
          Sample url that you get from email.  
-         http://note-lu.herokuapp.com/api/users/forgotpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjk5ODRkMGUzMWM2MDAxNzJjNTg5MCIsImlhdCI6MTU5NjU2MTYxNywiZXhwIjoxNTk2NTYyODE3fQ.x3LQlLAWzz3Hmtn5SDhvHhAAKzr8FWY5IKidxxZQMV8
+         http://note-mi.herokuapp.com/api/users/forgotpassword/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjk5ODRkMGUzMWM2MDAxNzJjNTg5MCIsImlhdCI6MTU5NjU2MTYxNywiZXhwIjoxNTk2NTYyODE3fQ.x3LQlLAWzz3Hmtn5SDhvHhAAKzr8FWY5IKidxxZQMV8
          method: post
          body:
          {
@@ -135,7 +136,7 @@ Endpoints:
   # Marinelle
   1. Update Profile
           
-                http://note-lu.herokuapp.com/api/users/update
+                http://note-mi.herokuapp.com/api/users/update
                 method: POST
                 {
                 "name":"Marinelle Reys",
@@ -148,7 +149,7 @@ Endpoints:
       
    2. Google Login
    
-                http://note-lu.herokuapp.com/api/users/google-login
+                http://note-mi.herokuapp.com/api/users/google-login
                 method: post
                 {
                 idToken: "Token-you-get-from-google-login"
