@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 var http = require("http");
 var url = require("url");
 const router = express.Router();
+const uuid = require("uuid");
 
 const checkAuth = require("../../middleware/check-auth");
 let fetch = require("node-fetch");
@@ -27,6 +28,7 @@ router.post("/login", (req, res, next) => {
   User.find({ email: req.body.email })
     .exec()
     .then((user) => {
+      console.log(user);
       if (user.length < 1) {
         return res.status(401).json({
           message:
@@ -326,34 +328,48 @@ router.post("/google-login", (req, res) => {
         User.findOne({ email }).exec((err, user) => {
           //if user is found
           if (user) {
-            const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-              expiresIn: "7d",
-            });
-            const { _id, email, name, dob } = user;
-            return res.json({
-              token,
-              user: { _id, email, name, dob },
+            const token = jwt.sign(
+              {
+                email: user.email,
+                userId: user._id,
+              },
+              process.env.JWT_KEY,
+              {
+                expiresIn: "1h",
+              }
+            );
+            return res.status(200).json({
+              isAuthenticated: true,
+              token: token,
             });
           } else {
-            let password = email + process.env.JWT_SECRET;
-            user = new User({ name, email, password });
-            user.save((err, data) => {
-              if (err) {
-                console.log("ERROR GOOGLE LOGIN ON USER SAVE", err);
-                return res
-                  .status(400)
-                  .json({ error: "User signup failed with google" });
+            bcrypt.hash(uuid.v4(), 10, (err, hash) => {
+              if (!err) {
+                const user = new User({
+                  _id: new mongoose.Types.ObjectId(),
+                  name: name,
+                  email: email,
+                  password: hash,
+                });
+                const result = user.save().then((result) => {
+                  const token = jwt.sign(
+                    {
+                      email: user.email,
+                      userId: user._id,
+                    },
+                    process.env.JWT_KEY,
+                    {
+                      expiresIn: "1h",
+                    }
+                  );
+                  return res.status(200).json({
+                    isAuthenticated: true,
+                    token: token,
+                  });
+                });
+              } else {
+                res.status(400).send(err);
               }
-              const token = jwt.sign(
-                { _id: data._id },
-                process.env.JWT_SECRET,
-                { expiresIn: "7d" }
-              );
-              const { _id, email, name } = data;
-              return res.json({
-                token,
-                user: { _id, email, name },
-              });
             });
           }
         }); //findone

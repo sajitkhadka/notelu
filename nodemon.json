@@ -2,10 +2,10 @@
   "env": {
     "MONGO_ATLAS_PW": "CTdYB4jqX6uovW7O",
     "JWT_KEY": "secret",
-    "GOOGLE_CLIENT_ID": "3637937257-qb1iec4mrad34etmnc1vvfjoufssdn0l.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_ID": "707689674235-nisrnmj8klekd8ngqkrk519536ipj3k4.apps.googleusercontent.com",
     "CLIENT_URL": "http://localhost:3006",
-    "MONGO_URI": "mongodb+srv://Prekshya:n01323774@cluster0.8ofsf.mongodb.net/notellu?retryWrites=true&w=majority",
+    "MONGO_URI": "mongodb+srv://khadka:dango@restman-trwwq.mongodb.net/notelu?retryWrites=true&w=majority",
     "RESET_PASSWORD_KEY": "secret",
-    "PORT": "5000"
+    "PORT": "4000"
   }
 }
