@@ -1,10 +1,11 @@
 import { history } from "../../../history";
 import axios from "axios";
+import { server } from "../../../config";
 
 export const submitLogin = (email, password) => {
   return (dispatch) => {
     axios
-      .post("https://note-lu.herokuapp.com/api/users/login", {
+      .post(`${server}/api/users/login`, {
         email: email,
         password: password,
       })
@@ -55,7 +56,7 @@ export const submitLogin = (email, password) => {
 export const checkAuthentication = () => {
   return (dispatch) => {
     axios
-      .get("https://note-lu.herokuapp.com/api/users/auth")
+      .get(`${server}/api/users/auth`)
       .then((response) => {
         if (response.data.isAuthenticated) {
           dispatch({

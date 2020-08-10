@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
+import { server } from "../config";
 
 const Google = ({ informParent = (f) => f }) => {
   const responseGoogle = (response) => {
@@ -8,7 +9,7 @@ const Google = ({ informParent = (f) => f }) => {
     axios({
       method: "POST",
       //url:`${process.env.REACT_APP_API}/google-login`,
-      url: `https://note-lu.herokuapp.com/api/users/google-login`,
+      url: `${server}/api/users/google-login`,
       data: { idToken: response.tokenId },
     })
       .then((response) => {

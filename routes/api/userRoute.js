@@ -29,13 +29,14 @@ router.post("/login", (req, res, next) => {
     .then((user) => {
       if (user.length < 1) {
         return res.status(401).json({
-          message: "Auth failed",
+          message:
+            "The email doesn't exist in our directory. Please create a new account or use another email.",
         });
       }
       bcrypt.compare(req.body.password, user[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
-            message: "Auth failed",
+            message: "Password didn't match.",
           });
         }
         if (result) {
@@ -54,15 +55,15 @@ router.post("/login", (req, res, next) => {
             token: token,
           });
         }
-        res.status(401).json({
-          message: "Auth failed",
+        res.status(500).json({
+          message: "There was a problem on our server. Try again later.",
         });
       });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error: err,
+        error: "There was a problem on our server. Try again later.",
       });
     });
 });

@@ -1,9 +1,10 @@
 import axios from "axios";
+import { server } from "../../../config";
 
 export const fetchEvents = () => {
   return async (dispatch) => {
     await axios
-      .get("https://note-lu.herokuapp.com/api/schedule/")
+      .get(`${server}/api/schedule/`)
       .then((response) => {
         console.log(response.data);
         dispatch({ type: "FETCH_SCHEDULE", events: response.data.schedule });
@@ -15,7 +16,7 @@ export const fetchEvents = () => {
 export const fetchCategories = () => {
   return async (dispatch) => {
     await axios
-      .get("https://note-lu.herokuapp.com/api/apps/calendar/categories")
+      .get(`${server}/api/apps/calendar/categories`)
       .then((response) => {
         dispatch({ type: "FETCH_CATEGORIES", categories: response.data });
       })
@@ -30,7 +31,7 @@ export const handleSidebar = (bool) => {
 export const addEvent = (event) => {
   return async (dispatch) => {
     await axios
-      .post("https://note-lu.herokuapp.com/api/schedule/add", event)
+      .post(`${server}/api/schedule/add`, event)
       .then((response) => {
         if (response.data.success) {
           dispatch({ type: "ADD_SCHEDULE", event: response.data.schedule });
@@ -42,7 +43,7 @@ export const addEvent = (event) => {
 export const updateEvent = (event) => {
   return async (dispatch) => {
     await axios
-      .put("https://note-lu.herokuapp.com/api/schedule", event)
+      .put(`${server}/api/schedule`, event)
       .then((response) => {
         if (response.data.success) {
           dispatch({ type: "UPDATE_SCHEDULE", event: response.data.schedule });
@@ -55,7 +56,7 @@ export const updateEvent = (event) => {
 export const updateDrag = (event) => {
   return async (dispatch) => {
     await axios
-      .put("https://note-lu.herokuapp.com/api/schedule", event)
+      .put(`${server}/api/schedule`, event)
       .then((response) => {
         if (response.data.success) {
           dispatch({ type: "UPDATE_SCHEDULE", event: response.data.schedule });
@@ -68,7 +69,7 @@ export const updateDrag = (event) => {
 export const updateResize = (event) => {
   return async (dispatch) => {
     await axios
-      .put("https://note-lu.herokuapp.com/api/schedule", event)
+      .put(`${server}/api/schedule`, event)
       .then((response) => {
         if (response.data.success) {
           dispatch({ type: "UPDATE_SCHEDULE", event: response.data.schedule });
@@ -86,7 +87,7 @@ export const removeAvailability = (availabilityId) => {
   let id = availabilityId;
   return async (dispatch) => {
     await axios
-      .delete("https://note-lu.herokuapp.com/api/schedule", {
+      .delete(`${server}/api/schedule`, {
         data: { id: availabilityId },
       })
       .then((response) => {

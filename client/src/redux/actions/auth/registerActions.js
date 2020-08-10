@@ -1,9 +1,10 @@
 import axios from "axios";
+import { server } from "../../../config";
 
 export const submitRegister = (user, fn) => {
   console.log(user);
   axios
-    .post("https://note-lu.herokuapp.com/api/users/register", {
+    .post(`${server}/api/users/register`, {
       name: user.name,
       email: user.email,
       dob: user.bdate,
