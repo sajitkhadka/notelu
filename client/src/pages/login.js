@@ -3,7 +3,10 @@ import loginImage from "../img/loginImage.svg";
 import styled from "styled-components/macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
-import { submitLogin } from "../redux/actions/auth/loginActions";
+import {
+  submitLogin,
+  submitGoogleLogin,
+} from "../redux/actions/auth/loginActions";
 import { connect } from "react-redux";
 
 //nelle
@@ -103,7 +106,7 @@ class Login extends Component {
               <A href="/forgotpassword">Forgot Password?</A>
               <ButtonLogin type="submit" value="Login"></ButtonLogin>
               <hr />
-              <Google informParent={informParent} />
+              <Google submitLogin={this.props.submitGoogleLogin} />
             </Form>
           </InputContainer>
         </Pagecontainer>
@@ -120,4 +123,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   submitLogin,
+  submitGoogleLogin,
 })(Login);

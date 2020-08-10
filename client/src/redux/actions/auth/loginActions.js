@@ -44,6 +44,44 @@ export const submitLogin = (email, password) => {
       });
   };
 };
+export const submitGoogleLogin = (token) => {
+  console.log(token);
+  return (dispatch) => {
+    axios
+      .post(`${server}/api/users/google-login`, {
+        idToken: token,
+      })
+      .then((response) => {
+        if (response.data.isAuthenticated) {
+          dispatch({
+            type: "LOGGED_IN",
+            payload: response.data,
+          });
+        } else {
+          dispatch({
+            type: "AUTH_ERROR",
+          });
+        }
+      })
+      .catch((err) => {
+        if (err.response) {
+          dispatch({
+            type: "AUTH_ERROR",
+            payload: {
+              message: err.response.data.message,
+            },
+          });
+        } else {
+          dispatch({
+            type: "AUTH_ERROR",
+            payload: {
+              message: "Error Logging in. Please try again later",
+            },
+          });
+        }
+      });
+  };
+};
 
 /*nelle*/
 // export const googleLogin = (response) => {
