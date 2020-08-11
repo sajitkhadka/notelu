@@ -7,10 +7,10 @@ TASK DIVISION FOR REACT
 
 # Sajit Khadka
 1.    Creating calendars UI using react components.
-2.     Feature to update the timeslot for schedules, editing the timeslot, dragging and dropping one time into another. Also adding validations in frontend such as if user doesn’t enter schedule title and enter it won’t be submitted.
-3.    Using redux to call backend api to save, update, modify and update the schedules.
-4.    Adding subscribers’ email
-5.    Using redux to handle login and signup(authentication).
+2.    Feature to update the timeslot for schedules, editing the timeslot, dragging and dropping one time into another. Also adding validations in frontend such as if user doesn’t enter schedule title and enter it won’t be submitted.
+3.   Using redux to call backend api to save, update, modify and update the schedules.
+4.   Adding subscribers’ email
+5.   Using redux to handle login and signup(authentication).
 6.   Deployment
 7.   Other features such as private routing (where logged in user will be redirected to private pages if tried to go to login page.).
 8.   Using redux(actions) to call all the rest api and get data in every part of project.
