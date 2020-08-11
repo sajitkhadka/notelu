@@ -11,7 +11,7 @@ export const submitRegister = (user, fn) => {
       password: user.password,
     })
     .then((response) => {
-      fn(response.data.success);
+      fn(true, response.data.message);
     })
     .catch((err) => {
       if (err.response) {

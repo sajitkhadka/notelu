@@ -139,7 +139,7 @@ function Navbar(props) {
             </NavButton>
           </LogoButton>
 
-          {props.home ? (
+          {props.home && !props.isAuthenticated ? (
             <NavList style={{ display: "flex" }}>
               <li>
                 <Lin
@@ -178,7 +178,11 @@ function Navbar(props) {
                 </Lin>
               </li>
             </NavList>
-          ) : null}
+          ) : props.isAuthenticated ? (
+            <NavList show={isOpen}></NavList>
+          ) : (
+            ""
+          )}
 
           {!props.isAuthenticated ? (
             <NavList show={isOpen}>

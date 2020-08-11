@@ -1,27 +1,24 @@
-import React, { useRef } from "react";
-import Footer from "../../layout/footer";
-import { Container } from "reactstrap";
+import React from "react";
 import { Link } from "react-router-dom";
 import welcomeImage from "../../img/dashboard-page/welcome.svg";
-import DashboardNavbar from "./dashboardNavbar";
 
-function DashboardLogin() {
-  const homeRef = useRef(null);
+export default function LoggedInHome(props) {
   return (
-    <React.Fragment>
-      <DashboardNavbar />
-      <section className="home-banner-area" id="home" ref={homeRef}>
+    <div>
+      <section className="home-banner-area" id="home" ref={props.homeRef}>
         <div className="container">
           <div className="row  text-md-left fullscreen">
             <div className="home-banner left col align-items-center">
               <div>
                 <h1>Welcome Prekshya</h1>
                 <p className="mx-auto mb-40">
-                  Lets Start this journey by creating your first scheduele.
+                  Lets Start this journey by creating your first schedule.
                 </p>
-                <Link to="/calendar">
-                  <button className="primary-btn">Calendar</button>
-                </Link>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Link to="/calendar" style={{ display: "flex" }}>
+                    <button className="primary-btn">Calendar</button>
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="home-banner right fullscreen">
@@ -34,10 +31,6 @@ function DashboardLogin() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </React.Fragment>
+    </div>
   );
 }
-
-export default DashboardLogin;

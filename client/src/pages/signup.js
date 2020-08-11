@@ -56,7 +56,21 @@ class Signup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     submitRegister(this.state.user, (success, message) => {
+      console.log(success, message);
       if (success) {
+        console.log({
+          dateType: "text",
+          user: {
+            name: "",
+            email: "",
+            password: "",
+            bdate: "",
+          },
+          submitResponse: {
+            success: success,
+            message: message,
+          },
+        });
         this.setState({
           dateType: "text",
           user: {
@@ -99,7 +113,8 @@ class Signup extends Component {
               {this.state.submitResponse ? (
                 this.state.submitResponse.success ? (
                   <p className="text-success">
-                    Succesfully created your profile. Please login to continue.
+                    Your profile is created and needs to be activated. Please
+                    check your email.
                   </p>
                 ) : (
                   <p className="text-danger">
