@@ -1,5 +1,6 @@
 #  Client 
 # Deployed at https://note-mi.herokuapp.com/
+This repo contains all code(client and server). Client is inside client directory.
 
 TASK DIVISION FOR REACT
 
@@ -11,12 +12,16 @@ TASK DIVISION FOR REACT
 5.	Using redux to handle login and signup(authentication).
 6.	Deployment
 7.	Other features such as private routing (where logged in user will be redirected to private pages if tried to go to login page.).
+8.      Using redux(actions) to call all the rest api and get data in every part of project.
 
 
 # Prekshya Aryal
 1. Sending verification email to server to authenticate
 2. Print the schedule
-3. Option to change to password when you forget the password
+3. Option to change to password when you forget the password. it should redirect to login.
+4. Privacy policy and help and support static pages
+5. On signup send verfication code to gmail. and after clicking on verification email then redirect to login.
+6. Login and signup pages.
 
 
 
@@ -24,6 +29,7 @@ TASK DIVISION FOR REACT
 1. Profile page
 2. Login with google
 3. Update profile
+
 
 
 
