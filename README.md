@@ -1,18 +1,19 @@
 #  Client 
+
 # Deployed at https://note-mi.herokuapp.com/
 This repo contains all code(client and server). Client is inside client directory.
 
 TASK DIVISION FOR REACT
 
 # Sajit Khadka
-1.	Creating calendars UI using react components.
-2.	Feature to update the timeslot for schedules, editing the timeslot, dragging and dropping one time into another. Also adding validations in frontend such as if user doesn’t enter schedule title and enter it won’t be submitted.
-3.	Using redux to call backend api to save, update, modify and update the schedules.
-4.	Adding subscribers’ email
-5.	Using redux to handle login and signup(authentication).
-6.	Deployment
-7.	Other features such as private routing (where logged in user will be redirected to private pages if tried to go to login page.).
-8.      Using redux(actions) to call all the rest api and get data in every part of project.
+1.    Creating calendars UI using react components.
+2.     Feature to update the timeslot for schedules, editing the timeslot, dragging and dropping one time into another. Also adding validations in frontend such as if user doesn’t enter schedule title and enter it won’t be submitted.
+3.    Using redux to call backend api to save, update, modify and update the schedules.
+4.    Adding subscribers’ email
+5.    Using redux to handle login and signup(authentication).
+6.   Deployment
+7.   Other features such as private routing (where logged in user will be redirected to private pages if tried to go to login page.).
+8.   Using redux(actions) to call all the rest api and get data in every part of project.
 
 
 # Prekshya Aryal
@@ -21,7 +22,8 @@ TASK DIVISION FOR REACT
 3. Option to change to password when you forget the password. it should redirect to login.
 4. Privacy policy and help and support static pages
 5. On signup send verfication code to gmail. and after clicking on verification email then redirect to login.
-6. Login and signup pages.
+6. Login and signup pages
+7. Change and reset password pages
 
 
 
@@ -32,6 +34,10 @@ TASK DIVISION FOR REACT
 
 
 
+
+
+
+# SERVER PORTION
 
 Server Major Endpoints:
 # Sajit Khadka
