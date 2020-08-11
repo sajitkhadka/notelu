@@ -6,6 +6,7 @@ const events = require("./routes/api/events");
 const connectDB = require("./config/connectDB");
 var cors = require("cors");
 const router = require("./routes/api/userRoute");
+const path = require("path");
 
 /*added by nelle*/
 require("dotenv").config();

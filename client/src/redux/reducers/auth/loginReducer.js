@@ -3,7 +3,8 @@ const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   message: "",
-  error: "",
+  error: false,
+  user: null,
 };
 
 export const login = (state = initialState, action) => {
@@ -41,8 +42,36 @@ export const login = (state = initialState, action) => {
         error: true,
       };
     }
+
+    case "FORGOT_PASSWORD": {
+      return {
+        ...state,
+        token: null,
+        message: payload.message,
+        error: !payload.success,
+      };
+    }
+    case "GOT_USER": {
+      return {
+        ...state,
+        user: payload.user,
+      };
+    }
+    case "FORGOT_PASSWORD_RESET": {
+      return {
+        ...state,
+        token: null,
+        message: payload.message,
+        error: !payload.success,
+      };
+    }
+
     default: {
-      return state;
+      return {
+        ...state,
+        message: "",
+        error: false,
+      };
     }
   }
 };

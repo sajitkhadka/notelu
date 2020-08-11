@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import forgotpassword from '../img/forgotpassword.svg';
-import styled from 'styled-components/macro';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import React, { Component, useState } from "react";
+import forgotpassword from "../img/forgotpassword.svg";
+import styled from "styled-components/macro";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import classNames from "classnames";
+import { connect } from "react-redux";
 import {
   Pagecontainer,
   InputContainer,
@@ -11,8 +13,10 @@ import {
   Input,
   InputDiv,
   P,
-} from './Login/container';
-import Navbar from '../layout/navbar';
+} from "./Login/container";
+import Navbar from "../layout/navbar";
+
+import { forgotPassword } from "../redux/actions/auth/loginActions";
 
 var Image = styled.div`
   width: 60%;
@@ -41,36 +45,66 @@ export const PP = styled.p`
   margin-bottom: 40px;
 `;
 
-class ForgotPassword extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Navbar />
-        <Pagecontainer>
-          <Image />
-          <InputContainer>
-            <Form>
-              <h1>Forgot password?</h1>
-              <div>
-                <P>Don't worry! We got you.</P>
-                <PP>
-                  Please provide us your email and we will send a link to change
-                  your password.
-                </PP>
-              </div>
-              <InputDiv>
-                <FontAwesomeIcon icon={faUser} />
-                <div>
-                  <Input type="text" placeholder="Email"></Input>
-                </div>
-              </InputDiv>
+function ForgotPassword(props) {
+  const [email, setEmail] = useState("");
 
-              <Button type="submit" value="Submit"></Button>
-            </Form>
-          </InputContainer>
-        </Pagecontainer>
-      </React.Fragment>
-    );
-  }
+  const messageClassName = classNames({
+    "text-success": !props.login.error,
+    "text-danger": props.login.error,
+  });
+  return (
+    <React.Fragment>
+      <Navbar />
+      <Pagecontainer>
+        <Image />
+        <InputContainer>
+          <Form>
+            {props.login && props.login.message ? (
+              <p className={messageClassName}>{props.login.message}</p>
+            ) : (
+              ""
+            )}
+            <h1>Forgot password?</h1>
+            <div>
+              <P>Don't worry! We got you.</P>
+              <PP>
+                Please provide us your email and we will send a link to change
+                your password.
+              </PP>
+            </div>
+            <InputDiv>
+              <FontAwesomeIcon icon={faUser} />
+              <div>
+                <Input
+                  type="text"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                ></Input>
+              </div>
+            </InputDiv>
+
+            <Button
+              type="submit"
+              value="Submit"
+              onClick={(event) => {
+                event.preventDefault();
+                props.forgotPassword(email);
+              }}
+            ></Button>
+          </Form>
+        </InputContainer>
+      </Pagecontainer>
+    </React.Fragment>
+  );
 }
-export default ForgotPassword;
+
+const mapStateToProps = (state) => {
+  return {
+    login: state.auth.login,
+  };
+};
+
+export default connect(mapStateToProps, {
+  forgotPassword,
+})(ForgotPassword);

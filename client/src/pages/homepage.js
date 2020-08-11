@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import LoggedInHome from "./HomeComponents/LoggedInHome";
 import LoggedOutHome from "./HomeComponents/LoggedOutHome";
 import { connect } from "react-redux";
+import { getUser } from "../redux/actions/auth/loginActions";
 
 const HomePage = function (props) {
   const [stickyNav, setStickyNav] = useState(false);
@@ -27,11 +28,18 @@ const HomePage = function (props) {
     };
   }, []);
 
+  useEffect(() => {
+    props.getUser();
+  }, []);
+
   return (
     <React.Fragment>
       <Navbar sticky={stickyNav} home={true} />
       {props.isAuthenticated ? (
-        <LoggedInHome homeRef={homeRef} />
+        <LoggedInHome
+          homeRef={homeRef}
+          name={props.user ? props.user.name : ""}
+        />
       ) : (
         <LoggedOutHome homeRef={homeRef} />
       )}
@@ -46,10 +54,12 @@ const mapStateToProps = (state) => {
     // sticky: state.showNavbar.sticky,
 
     isAuthenticated: state.auth.login.isAuthenticated,
+    user: state.auth.login.user,
   };
 };
 
 export default connect(mapStateToProps, {
   // showNavBar,
   // hideNavBar,
+  getUser,
 })(HomePage);

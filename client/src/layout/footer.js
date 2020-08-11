@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row, Col } from "reactstrap";
 import logo from "../img/logo.png";
 import { addSubscriber } from "../api/subscriber";
+import { Link } from "react-router-dom";
 
 const Footer = function () {
   const [subscribeEmail, setSubscribeEmail] = useState("");
@@ -69,21 +70,21 @@ const Footer = function () {
             <h3>Site Links</h3>
             <ul className="list">
               <li>
-                <a href="#">Help & Support</a>
+                <Link to="#">Help & Support</Link>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <Link to="#">Privacy Policy</Link>
               </li>
               <li>
-                <a href="/login">Login</a>
+                <Link to="/login">Login</Link>
               </li>
               <li>
-                <a href="/Signup">Sign Up</a>
+                <Link to="/signup">Sign Up</Link>
               </li>
             </ul>
           </div>
           <div>
-            <p>Copyright &copy; 2019, All Rights Reserved</p>
+            <p>Copyright &copy; 2019, Notelu, All Rights Reserved</p>
           </div>
         </Col>
       </Row>

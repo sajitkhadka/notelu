@@ -8,6 +8,9 @@ import {
   submitGoogleLogin,
 } from "../redux/actions/auth/loginActions";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { useParams } from "react-router-dom";
 
 //nelle
 //import { googleLogin } from "../redux/actions/auth/loginActions";
@@ -58,13 +61,7 @@ class Login extends Component {
         !this.props.login.isAuthenticated && this.props.login.error,
     });
 
-    /*nelle*/
-    const informParent = (response) => {
-      // alert(JSON.stringify(response))
-      //googleLogin(response);
-    };
-    /*end of informParent*/
-
+    console.log(this.props.match.params.success);
     return (
       <React.Fragment>
         <Navbar />
@@ -78,6 +75,16 @@ class Login extends Component {
               ) : (
                 ""
               )}
+              {this.props.match.params &&
+              this.props.match.params.success === "success" ? (
+                <p className="text-success">
+                  Your account has been successfully activated. You can sign in
+                  now.
+                </p>
+              ) : (
+                ""
+              )}
+
               <InputDiv>
                 <FontAwesomeIcon icon={faUser} />
                 <div>
@@ -103,7 +110,7 @@ class Login extends Component {
                 </div>
               </InputDiv>
 
-              <A href="/forgotpassword">Forgot Password?</A>
+              <Link to="/forgotpassword">Forgot Password?</Link>
               <ButtonLogin type="submit" value="Login"></ButtonLogin>
               <hr />
               <Google submitLogin={this.props.submitGoogleLogin} />

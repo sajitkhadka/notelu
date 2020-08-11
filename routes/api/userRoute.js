@@ -9,6 +9,8 @@ var url = require("url");
 const router = express.Router();
 const uuid = require("uuid");
 
+const findUser = require("../../middleware/findUser");
+
 const checkAuth = require("../../middleware/check-auth");
 let fetch = require("node-fetch");
 
@@ -128,6 +130,7 @@ router.post("/register", (req, res, next) => {
 
 //When link is clicked, registered the user and signup process is complete
 router.get("/authentication/:token/", (req, res) => {
+  var hostname = req.headers.host;
   const token = req.params.token;
   if (token) {
     jwt.verify(token, process.env.JWT_KEY, function (err, decodedToken) {
@@ -152,16 +155,19 @@ router.get("/authentication/:token/", (req, res) => {
             user
               .save()
               .then((result) => {
-                res.status(201).json({
-                  success: true,
-                  message: "Sign up success!",
-                });
+                // res.status(201).json({
+                //   success: true,
+                //   message: "Sign up success!",
+                // });
+
+                res.redirect(`http://${hostname}/login/success`);
               })
               .catch((err) => {
-                console.log(err);
-                res.status(500).json({
-                  message: "Error in signing up",
-                });
+                // console.log(err);
+                // res.status(500).json({
+                //   message: "Error in signing up",
+                // });
+                res.redirect(`http://${hostname}/signup/fail`);
               });
           }
         });
@@ -174,10 +180,15 @@ router.get("/authentication/:token/", (req, res) => {
 
 //for getting the token for reseting password
 router.post("/forgotpassword", (req, res) => {
-  const { email } = req.body;
+  const email = req.body.email;
   console.log(email);
   User.find({ email }).exec((err, user) => {
-    if (user.length >= 1) {
+    if (!user) {
+      res.status(409).json({
+        message: "Email Not found",
+      });
+    }
+    if (user && user.length >= 1) {
       console.log(user[0].id);
       console.log(user[0]._id);
       const token = jwt.sign(
@@ -201,11 +212,12 @@ router.post("/forgotpassword", (req, res) => {
               },
             ],
             Subject: "Password Reset Link.",
-            HTMLPart: `<h3> Please click on given link to reset your password <a href="http://${req.headers.host}/api/users/forgotpassword/${token}">Click Here</a></h3>`,
+            HTMLPart: `<h3> Please click on given link to reset your password <a href="http://${req.headers.host}/resetpassword/${token}">Click Here</a></h3>`,
             CustomID: "AppGettingStartedTest",
           },
         ],
       });
+      console.log(request);
       return User.updateOne({ resetLink: token }, (err, success) => {
         if (err) {
           return res.status(400).json({ error: "Reset password link error!" });
@@ -311,6 +323,15 @@ router.get("/auth", checkAuth, (req, res) => {
   res.status(200).json({
     isAuthenticated: true,
   });
+});
+
+router.get("/", checkAuth, findUser, (req, res) => {
+  res
+    .status(200)
+    .send({
+      success: true,
+      user: { name: req.user.name, email: req.user.email, dob: req.user.dob },
+    });
 });
 
 /*added by nelle for google login*/

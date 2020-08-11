@@ -23,6 +23,8 @@ class AppRouter extends React.Component {
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <PublicRouter path="/login/:success" exact component={Login} />
+
           <PublicRouter path="/login" exact component={Login} />
           <PublicRouter path="/signup" exact component={Signup} />
           <PublicRouter
@@ -38,7 +40,6 @@ class AppRouter extends React.Component {
 
           {/* <PublicRouter path="/profile" exact component={Profile} /> */}
           <PrivateRouter path="/calendar" exact component={Calendar} />
-          <PublicRouter path="/signup" exact component={Signup} />
           <PublicRouter
             path="/changepassword"
             exact
@@ -50,7 +51,11 @@ class AppRouter extends React.Component {
             component={ProfileSettings}
           />
 
-          <PublicRouter path="/resetpassword" exact component={ResetPassword} />
+          <PublicRouter
+            path="/resetpassword/:key"
+            exact
+            component={ResetPassword}
+          />
           <Route component={Error404} />
         </Switch>
       </Router>

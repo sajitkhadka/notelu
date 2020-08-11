@@ -10,9 +10,9 @@ export default function LoggedInHome(props) {
           <div className="row  text-md-left fullscreen">
             <div className="home-banner left col align-items-center">
               <div>
-                <h1>Welcome Prekshya</h1>
+                <h1>Welcome {props.name}</h1>
                 <p className="mx-auto mb-40">
-                  Lets Start this journey by creating your first schedule.
+                  Lets Start this journey by creating your schedule.
                 </p>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <Link to="/calendar" style={{ display: "flex" }}>

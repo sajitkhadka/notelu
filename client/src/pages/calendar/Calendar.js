@@ -61,6 +61,7 @@ class Toolbar extends React.Component {
             >
               Week
             </button>
+
             <button
               className={`btn ${
                 this.props.view === "day"
@@ -75,6 +76,20 @@ class Toolbar extends React.Component {
             </button>
           </ButtonGroup>
         </div>
+        {this.props.view === "day" ? (
+          <div className="justify-content-between">
+            <Button
+              className="btn-icon rounded-circle"
+              size="sm"
+              color="primary"
+              onClick={() => window.print()}
+            >
+              Print
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="month-label d-flex flex-column text-md-right mt-1 mt-md-0">
           <div className="calendar-navigation">
             <Button
@@ -138,6 +153,7 @@ class CalendarApp extends React.Component {
       eventInfo: null,
       categories: [],
     };
+    this.printRef = React.createRef();
   }
 
   async componentDidMount() {
@@ -250,6 +266,7 @@ class CalendarApp extends React.Component {
         <Pagecontainer>
           <div className="app-calendar position-relative">
             <div
+              ref={this.printRef}
               className={`app-content-overlay ${sidebar ? "show" : "hidden"}`}
               onClick={() => {
                 this.props.handleSidebar(false);

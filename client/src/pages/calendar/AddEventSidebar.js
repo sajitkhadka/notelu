@@ -219,6 +219,7 @@ class AddEvent extends React.Component {
             <FormGroup>
               <Flatpickr
                 id="date"
+                disabled={true}
                 className="form-control"
                 value={this.state.startDate}
                 onChange={(date) => this.handleEndDateChange(date)}

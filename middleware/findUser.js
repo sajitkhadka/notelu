@@ -1,5 +1,5 @@
-let User = require('../models/user');
-const mongoose = require('mongoose');
+let User = require("../models/user");
+const mongoose = require("mongoose");
 
 module.exports = (req, res, next) => {
   User.find({ email: req.decoded.email })
@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
       } else {
         return res
           .status(400)
-          .send({ success: false, message: 'Authentication Error!' });
+          .send({ success: false, message: "Authentication Error!" });
       }
     })
     .catch((err) => {
