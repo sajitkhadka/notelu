@@ -66,7 +66,7 @@ function ResetPassword(props) {
             ) : (
               ""
             )}
-            <h1>Please reset your password</h1>
+            <h1>Reset your password</h1>
 
             <InputDiv>
               <FontAwesomeIcon icon={faLock} />
