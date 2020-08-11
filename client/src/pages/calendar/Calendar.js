@@ -153,7 +153,6 @@ class CalendarApp extends React.Component {
       eventInfo: null,
       categories: [],
     };
-    this.printRef = React.createRef();
   }
 
   async componentDidMount() {

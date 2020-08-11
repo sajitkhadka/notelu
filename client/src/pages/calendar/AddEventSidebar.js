@@ -50,25 +50,6 @@ class AddEvent extends React.Component {
     categories: [],
   };
 
-  // checkTimeConflict = () => {
-  //   const date = new Date(d);
-  //   let error = "";
-  //   this.props.events.map((event) => {
-  //     if (
-  //       event.label == this.state.selectedAd &&
-  //       moment(date).isBetween(event.start, event.end)
-  //     ) {
-  //       error = "The time is overlapping";
-  //     }
-  //   });
-  //   if (error) {
-  //     this.setState({ error: "error" });
-  //     return true;
-  //   }
-  //   this.setState({ error: "" });
-  //   return false;
-  // };
-
   checkTimeConflict = (
     startDate = this.state.startDate,
     endDate = this.state.endDate,
@@ -97,6 +78,7 @@ class AddEvent extends React.Component {
     if (this.state.error) this.setState({ error: "" });
     return false;
   };
+
   handleStartTimeChange = (date) => {
     if (moment(new Date(this.state.endDate)).isSameOrBefore(date)) {
       this.setState({ error: "The end time is before starting time" });
