@@ -11,9 +11,10 @@ const HomePage = lazy(() => import("../pages/homepage"));
 
 const ForgotPassword = lazy(() => import("../pages/forgotpassword"));
 const ChangePassword = lazy(() => import("../pages/changepassword"));
-const Profile = lazy(() => import("../pages/Profile/profileSettings"));
+const ProfileSettings = lazy(() => import("../pages/Profile/profileSettings"));
 
 const Calendar = lazy(() => import("../pages/calendar/Calendar.js"));
+const ResetPassword = lazy(() => import("../pages/resetpassword.js"));
 const Error404 = lazy(() => import("../pages/error404"));
 
 class AppRouter extends React.Component {
@@ -35,7 +36,7 @@ class AppRouter extends React.Component {
             component={ForgotPassword}
           />
 
-          <PublicRouter path="/profile" exact component={Profile} />
+          {/* <PublicRouter path="/profile" exact component={Profile} /> */}
           <PrivateRouter path="/calendar" exact component={Calendar} />
           <PublicRouter path="/signup" exact component={Signup} />
           <PublicRouter
@@ -44,10 +45,12 @@ class AppRouter extends React.Component {
             component={ChangePassword}
           />
           <PublicRouter
-            path="/forgotpassword"
+            path="/profilesetting"
             exact
-            component={ForgotPassword}
+            component={ProfileSettings}
           />
+
+          <PublicRouter path="/resetpassword" exact component={ResetPassword} />
           <Route component={Error404} />
         </Switch>
       </Router>
