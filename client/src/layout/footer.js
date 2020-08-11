@@ -69,10 +69,10 @@ const Footer = function () {
             <h3>Site Links</h3>
             <ul className="list">
               <li>
-                <a href="#">Help & Support</a>
+                <a href="/support">Help & Support</a>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a href="/privacypolicy">Privacy Policy</a>
               </li>
               <li>
                 <a href="/login">Login</a>

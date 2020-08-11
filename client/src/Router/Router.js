@@ -15,7 +15,9 @@ const ProfileSettings = lazy(() => import("../pages/Profile/profileSettings"));
 
 const Calendar = lazy(() => import("../pages/calendar/Calendar.js"));
 const ResetPassword = lazy(() => import("../pages/resetpassword.js"));
+const Support = lazy(() => import("../pages/support"));
 const Error404 = lazy(() => import("../pages/error404"));
+const PrivacyPolicy = lazy(() => import("../pages/privacypolicy"));
 
 class AppRouter extends React.Component {
   render() {
@@ -51,6 +53,10 @@ class AppRouter extends React.Component {
           />
 
           <PublicRouter path="/resetpassword" exact component={ResetPassword} />
+
+          <PublicRouter path="/support" exact component={Support} />
+          <PublicRouter path="/privacypolicy" exact component={PrivacyPolicy} />
+
           <Route component={Error404} />
         </Switch>
       </Router>

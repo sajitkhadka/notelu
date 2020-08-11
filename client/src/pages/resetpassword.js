@@ -45,7 +45,7 @@ class ResetPassword extends Component {
           <Image />
           <InputContainer>
             <Form>
-              <h1>Please reset your password</h1>
+              <h1> Reset your password</h1>
 
               <InputDiv>
                 <FontAwesomeIcon icon={faLock} />
